@@ -4,7 +4,17 @@ import { BookOpen, FileText, BrainCircuit, ArrowRight } from "lucide-react";
 export default function Home() {
     return (
         <main className="container">
-            {/* Hero Section */}
+            <header style={{ display: 'flex', justifyContent: 'flex-end', padding: '1.5rem 0', position: 'absolute', top: 0, left: 0, right: 0, width: '100%', maxWidth: '1200px', margin: '0 auto', boxSizing: 'border-box' }}>
+                <nav style={{ display: 'flex', gap: '1rem' }}>
+                    <Link href="/login" style={{ padding: '0.5rem 1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', color: 'white', textDecoration: 'none', transition: 'all 0.2s' }}>
+                        Log In
+                    </Link>
+                    <Link href="/signup" className="btn-primary" style={{ padding: '0.5rem 1.5rem', fontSize: '1rem' }}>
+                        Sign Up
+                    </Link>
+                </nav>
+            </header>
+
             <section style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
                 <div className="animate-fade-in">
                     <h1 style={{ fontSize: '4rem', fontWeight: '800', marginBottom: '1.5rem', lineHeight: 1.1 }}>

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import Groq from "groq-sdk";
 // @ts-ignore
-const pdf = require('pdf-parse');
+import pdf from 'pdf-parse';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -22,6 +22,7 @@ export async function POST(req: Request) {
             const arrayBuffer = await file.arrayBuffer();
             const buffer = Buffer.from(arrayBuffer);
             try {
+                // pdf-parse v1.1.1 exports a function directly (default export)
                 const data = await pdf(buffer);
                 content = data.text;
                 // Limit content length to avoid token limits (Groq has limits)
