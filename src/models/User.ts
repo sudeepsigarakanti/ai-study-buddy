@@ -22,4 +22,8 @@ const UserSchema = new mongoose.Schema({
     },
 });
 
-export default mongoose.models.User || mongoose.model('User', UserSchema);
+// Export as a function to prevent model creation at build time
+export default function getUser() {
+    return mongoose.models.User || mongoose.model('User', UserSchema);
+}
+

@@ -16,7 +16,8 @@ export async function POST(req: Request) {
 
         await dbConnect();
 
-        const existingUser = await User.findOne({ email });
+        const UserModel = User();
+        const existingUser = await UserModel.findOne({ email });
         if (existingUser) {
             return NextResponse.json(
                 { message: 'User already exists' },
@@ -27,7 +28,7 @@ export async function POST(req: Request) {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const user = await User.create({
+        const user = await UserModel.create({
             username,
             email,
             password: hashedPassword,
