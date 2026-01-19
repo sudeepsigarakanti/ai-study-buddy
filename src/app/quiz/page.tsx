@@ -18,6 +18,7 @@ export default function QuizPage() {
     const [activeTab, setActiveTab] = useState<'topic' | 'file'>('topic');
     const [file, setFile] = useState<File | null>(null);
     const [count, setCount] = useState(5);
+    const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -33,6 +34,7 @@ export default function QuizPage() {
             const formData = new FormData();
             formData.append('type', 'quiz');
             formData.append('count', count.toString());
+            formData.append('difficulty', difficulty);
 
             if (activeTab === 'topic') {
                 formData.append('content', topic);
@@ -159,7 +161,7 @@ export default function QuizPage() {
                             </div>
                         )}
 
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
                             <label style={{ color: '#cbd5e1' }}>Number of Questions:</label>
                             <input
                                 type="number"
@@ -170,6 +172,58 @@ export default function QuizPage() {
                                 className="input-glass"
                                 style={{ width: '80px', padding: '0.5rem', textAlign: 'center' }}
                             />
+                        </div>
+
+                        {/* Difficulty Selection */}
+                        <div style={{ marginBottom: '2rem' }}>
+                            <label style={{ color: '#cbd5e1', display: 'block', textAlign: 'center', marginBottom: '1rem' }}>Difficulty:</label>
+                            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
+                                <button
+                                    onClick={() => setDifficulty('easy')}
+                                    style={{
+                                        padding: '0.625rem 1.5rem',
+                                        borderRadius: '8px',
+                                        background: difficulty === 'easy' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'transparent',
+                                        border: difficulty === 'easy' ? '1px solid #22c55e' : '1px solid rgba(34, 197, 94, 0.3)',
+                                        color: difficulty === 'easy' ? 'white' : '#4ade80',
+                                        cursor: 'pointer',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    Easy
+                                </button>
+                                <button
+                                    onClick={() => setDifficulty('medium')}
+                                    style={{
+                                        padding: '0.625rem 1.5rem',
+                                        borderRadius: '8px',
+                                        background: difficulty === 'medium' ? 'linear-gradient(135deg, #f59e0b, #d97706)' : 'transparent',
+                                        border: difficulty === 'medium' ? '1px solid #f59e0b' : '1px solid rgba(245, 158, 11, 0.3)',
+                                        color: difficulty === 'medium' ? 'white' : '#fbbf24',
+                                        cursor: 'pointer',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    Medium
+                                </button>
+                                <button
+                                    onClick={() => setDifficulty('hard')}
+                                    style={{
+                                        padding: '0.625rem 1.5rem',
+                                        borderRadius: '8px',
+                                        background: difficulty === 'hard' ? 'linear-gradient(135deg, #ef4444, #dc2626)' : 'transparent',
+                                        border: difficulty === 'hard' ? '1px solid #ef4444' : '1px solid rgba(239, 68, 68, 0.3)',
+                                        color: difficulty === 'hard' ? 'white' : '#f87171',
+                                        cursor: 'pointer',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    Hard
+                                </button>
+                            </div>
                         </div>
 
                         <button

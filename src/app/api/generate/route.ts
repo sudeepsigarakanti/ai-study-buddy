@@ -12,6 +12,7 @@ export async function POST(req: Request) {
         let content = formData.get('content') as string;
         const file = formData.get('file') as File | null;
         const count = formData.get('count') ? parseInt(formData.get('count') as string) : 3;
+        const difficulty = formData.get('difficulty') as string || 'medium';
 
         if (!process.env.GROQ_API_KEY) {
             return NextResponse.json({ error: 'API Key not configured' }, { status: 500 });
@@ -41,7 +42,16 @@ export async function POST(req: Request) {
         } else if (type === 'summarize') {
             prompt = `Summarize the following text into a structured Markdown format. Use a "## Key Takeaways" header, followed by a bulleted list using dashes (-). Use bolding **text** for important terms. Text: "${content}"`;
         } else if (type === 'quiz') {
-            prompt = `Generate ${count} distinct multiple-choice questions based on the following content. 
+            const difficultyInstructions = {
+                easy: 'Make questions straightforward with clear, obvious answers. Focus on basic concepts and definitions.',
+                medium: 'Create moderately challenging questions that require understanding and some analysis.',
+                hard: 'Generate advanced questions requiring deep understanding, critical thinking, and application of complex concepts.'
+            };
+
+            prompt = `Generate ${count} distinct multiple-choice questions based on the following content.
+        
+        DIFFICULTY LEVEL: ${difficulty.toUpperCase()}
+        ${difficultyInstructions[difficulty as keyof typeof difficultyInstructions]}
         
         Content: "${content.substring(0, 15000)}"
 
