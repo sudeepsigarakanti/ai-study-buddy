@@ -37,9 +37,17 @@ export async function POST(req: Request) {
             );
         }
 
+        // Check if user is verified
+        if (!user.isVerified) {
+            return NextResponse.json(
+                { message: 'Please verify your email first. Check your inbox for the OTP.' },
+                { status: 403 }
+            );
+        }
+
         // Generate Token
         const token = jwt.sign(
-            { userId: user._id, email: user.email, username: user.username },
+            { userId: user._id, email: user.email },
             JWT_SECRET,
             { expiresIn: '1d' }
         );
@@ -53,7 +61,7 @@ export async function POST(req: Request) {
         });
 
         return NextResponse.json(
-            { message: 'Logged in successfully', user: { id: user._id, username: user.username, email: user.email } },
+            { message: 'Logged in successfully', user: { id: user._id, email: user.email } },
             {
                 status: 200,
                 headers: { 'Set-Cookie': serialized },

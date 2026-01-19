@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from 'react';
 import Link from "next/link";
@@ -73,23 +73,6 @@ export default function Home() {
                             </button>
                         </div>
 
-                        {/* Stats Section */}
-                        <div className="stats-grid">
-                            <div className="stat-item">
-                                <div className="stat-number">10k+</div>
-                                <div className="stat-label">Topics Explained</div>
-                            </div>
-                            <div className="stat-divider"></div>
-                            <div className="stat-item">
-                                <div className="stat-number">95%</div>
-                                <div className="stat-label">Accuracy Rate</div>
-                            </div>
-                            <div className="stat-divider"></div>
-                            <div className="stat-item">
-                                <div className="stat-number">5k+</div>
-                                <div className="stat-label">Active Learners</div>
-                            </div>
-                        </div>
                     </div>
                 </section>
 
@@ -114,15 +97,15 @@ export default function Home() {
                                     Struggling with a concept? Get clear, simple explanations tailored to your level.
                                     No jargon, just understanding.
                                 </p>
-                                <div className="feature-arrow">
-                                    <ArrowRight size={20} />
-                                </div>
+                                <button className="feature-action-btn" data-color="blue">
+                                    Try it now <ArrowRight size={18} />
+                                </button>
                             </div>
                         </Link>
 
                         {/* Feature 2 */}
                         <Link href="/notes" className="feature-card-link">
-                            <div className="feature-card">
+                            <div className="feature-card" data-color="pink">
                                 <div className="feature-icon" style={{ background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.05))' }}>
                                     <FileText size={32} color="#f472b6" />
                                 </div>
@@ -131,15 +114,15 @@ export default function Home() {
                                     Turn pages of notes into concise summaries. Upload text or files and extract
                                     the key points in seconds.
                                 </p>
-                                <div className="feature-arrow">
-                                    <ArrowRight size={20} />
-                                </div>
+                                <button className="feature-action-btn" data-color="pink">
+                                    Try it now <ArrowRight size={18} />
+                                </button>
                             </div>
                         </Link>
 
                         {/* Feature 3 */}
                         <Link href="/quiz" className="feature-card-link">
-                            <div className="feature-card">
+                            <div className="feature-card" data-color="purple">
                                 <div className="feature-icon" style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.05))' }}>
                                     <BrainCircuit size={32} color="#a78bfa" />
                                 </div>
@@ -148,9 +131,9 @@ export default function Home() {
                                     Test yourself with auto-generated quizzes and flashcards from any topic to
                                     reinforce your learning.
                                 </p>
-                                <div className="feature-arrow">
-                                    <ArrowRight size={20} />
-                                </div>
+                                <button className="feature-action-btn" data-color="purple">
+                                    Try it now <ArrowRight size={18} />
+                                </button>
                             </div>
                         </Link>
                     </div>
@@ -208,7 +191,7 @@ export default function Home() {
                         <p className="footer-text">Built for the future of learning.</p>
                     </div>
                     <div className="footer-divider"></div>
-                    <p className="footer-copyright">© 2024 AI Study. All rights reserved.</p>
+                    <p className="footer-copyright">Â© 2024 AI Study. All rights reserved.</p>
                 </footer>
             </div>
         </main>

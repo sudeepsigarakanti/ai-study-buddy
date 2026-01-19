@@ -1,11 +1,6 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: [true, 'Please provide a username'],
-        maxlength: [60, 'Username cannot be more than 60 characters'],
-    },
     email: {
         type: String,
         required: [true, 'Please provide an email'],
@@ -16,6 +11,18 @@ const UserSchema = new mongoose.Schema({
         required: [true, 'Please provide a password'],
         minlength: [6, 'Password cannot be less than 6 characters'],
     },
+    otp: {
+        type: String,
+        default: null,
+    },
+    otpExpiry: {
+        type: Date,
+        default: null,
+    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
@@ -24,6 +31,9 @@ const UserSchema = new mongoose.Schema({
 
 // Export as a function to prevent model creation at build time
 export default function getUser() {
-    return mongoose.models.User || mongoose.model('User', UserSchema);
+    // Delete cached model to prevent schema conflicts
+    if (mongoose.models.User) {
+        delete mongoose.models.User;
+    }
+    return mongoose.model('User', UserSchema);
 }
-

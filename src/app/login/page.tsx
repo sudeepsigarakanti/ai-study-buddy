@@ -37,7 +37,7 @@ export default function LoginPage() {
             // Store user data in localStorage for ProfileMenu
             if (data.user) {
                 localStorage.setItem('user', JSON.stringify({
-                    name: data.user.username,  // Use username from API response
+                    name: data.user.email.split('@')[0],  // Use email prefix as display name
                     email: data.user.email
                 }));
             }
