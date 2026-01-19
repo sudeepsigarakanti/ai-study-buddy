@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from "next/link";
-import { BookOpen, FileText, BrainCircuit, ArrowRight, Sparkles, Target, Zap, TrendingUp } from "lucide-react";
+import { BookOpen, FileText, BrainCircuit, ArrowRight, Sparkles, Target, Zap, TrendingUp, Layers } from "lucide-react";
 import ProfileMenu from '@/components/ProfileMenu';
 
 export default function Home() {
@@ -132,6 +132,23 @@ export default function Home() {
                                     reinforce your learning.
                                 </p>
                                 <button className="feature-action-btn" data-color="purple">
+                                    Try it now <ArrowRight size={18} />
+                                </button>
+                            </div>
+                        </Link>
+
+                        {/* Feature 4 - Flashcards */}
+                        <Link href="/flashcards" className="feature-card-link">
+                            <div className="feature-card" data-color="emerald">
+                                <div className="feature-icon" style={{ background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05))' }}>
+                                    <Layers size={32} color="#34d399" />
+                                </div>
+                                <h3 className="feature-title">AI Flashcards</h3>
+                                <p className="feature-description">
+                                    Upload PDFs or chat to create smart flashcards. Perfect for memorization and
+                                    quick review of key concepts.
+                                </p>
+                                <button className="feature-action-btn" data-color="emerald">
                                     Try it now <ArrowRight size={18} />
                                 </button>
                             </div>
